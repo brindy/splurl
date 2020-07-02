@@ -29,6 +29,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
             window.makeKeyAndVisible()
         }
+
+        // listen for app being opened with urls
+        NotificationCenter.default.addObserver(forName: .OpenedWithText, object: nil, queue: nil) { notification in
+            let text = notification.object as? String
+            print("opened with text", text as Any)
+            contentView.model.url = text
+        }
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -59,6 +67,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        print(#function)
+        guard let url = URLContexts.first?.url else { return }
+        URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.forEach { item in
+            guard item.name == "text" else { return  }
+            guard let text = item.value else { return }
+            NotificationCenter.default.post(name: .OpenedWithText, object: text)
+        }
+    }
 
 }
 

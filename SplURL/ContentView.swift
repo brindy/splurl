@@ -88,15 +88,60 @@ struct WelcomeView: View {
 
 }
 
-struct ContentView: View {
+class Model: ObservableObject {
 
-    @State var url: String? {
+    @Published var url: String? {
         didSet {
+            print("didSet", url as Any)
             parts = createParts()
         }
     }
 
-    @State var parts: [String] = []
+    @Published var parts: [String] = []
+
+    func createParts() -> [String] {
+        guard let urlString = url, let url = URL(string: urlString) else { return [] }
+
+        let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+
+        let paths = components?.path
+            .components(separatedBy: "/")
+            .map { $0.components(separatedBy: "&") }
+            .flatMap { $0 }
+            .map { $0.components(separatedBy: "=") }
+            .flatMap { $0 }
+            ?? []
+
+        let queryItems = components?.queryItems?
+            .map{ [$0.name, $0.value] }
+            .flatMap{ $0 }
+            .compactMap{ $0 } ?? []
+
+        let fragments = components?.fragment?
+            .components(separatedBy: "/")
+            .map { $0.components(separatedBy: "&") }
+            .flatMap { $0 }
+            .map { $0.components(separatedBy: "=") }
+            .flatMap { $0 }
+            ?? []
+
+        let parts: [String?] = [ components?.scheme,
+                                 components?.user,
+                                 components?.password,
+                                 components?.host,
+                                 components?.port?.string ]
+            + (paths)
+            + (queryItems)
+            + (fragments)
+
+        return parts.compactMap { $0?.isEmpty ?? true ? nil : $0 }
+    }
+
+}
+
+struct ContentView: View {
+
+    @ObservedObject var model = Model()
 
     @State var showSheet = true
     @State var showWelcome = true
@@ -122,21 +167,21 @@ struct ContentView: View {
 
             HStack(alignment: .center) {
 
-                if url == nil {
+                if model.url == nil {
                     Text("Use")
                     Image(systemName: "doc.on.clipboard")
                     Text("to paste from the clipboard")
                 }
 
-                Text(url ?? "").padding([.top, .bottom], 8)
+                Text(model.url ?? "").padding([.top, .bottom], 8)
 
-                if url != nil {
+                if model.url != nil {
 
                     Spacer()
 
                     Button(action: {
                         print("Clear pressed")
-                        self.url = nil
+                        self.model.url = nil
                     }) {
                         Image(systemName: "clear")
                     }.padding([.trailing], 16)
@@ -148,7 +193,7 @@ struct ContentView: View {
                 .background(Color(UIColor.systemBackground).shadow(color: Color(UIColor.secondarySystemFill), radius: 1, x: 0, y: 2))
 
             ScrollView {
-                ForEach(parts) { part in
+                ForEach(model.parts) { part in
                     PartView(part: part)
                 }
             }
@@ -187,9 +232,9 @@ struct ContentView: View {
 
     func tapPaste() {
 
-        let delay = self.url == nil ? 0.0 : 0.3
+        let delay = self.model.url == nil ? 0.0 : 0.3
 
-        self.url = ""
+        self.model.url = ""
 
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             let urlString = UIPasteboard.general.string?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
@@ -203,47 +248,9 @@ struct ContentView: View {
                 url = URL(string: potential ?? "")
             }
 
-            self.url = url?.absoluteString ?? "No URL in the clipboard"
+            self.model.url = url?.absoluteString ?? "No URL in the clipboard"
         }
 
-    }
-
-    func createParts() -> [String] {
-        guard let urlString = url, let url = URL(string: urlString) else { return [] }
-
-        let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-
-        let paths = components?.path
-            .components(separatedBy: "/")
-            .map { $0.components(separatedBy: "&") }
-            .flatMap { $0 }
-            .map { $0.components(separatedBy: "=") }
-            .flatMap { $0 }
-            ?? []
-
-        let queryItems = components?.queryItems?
-            .map{ [$0.name, $0.value] }
-            .flatMap{ $0 }
-            .compactMap{ $0 } ?? []
-
-        let fragments = components?.fragment?
-            .components(separatedBy: "/")
-            .map { $0.components(separatedBy: "&") }
-            .flatMap { $0 }
-            .map { $0.components(separatedBy: "=") }
-            .flatMap { $0 }
-            ?? []
-
-        let parts: [String?] = [ components?.scheme,
-                                 components?.user,
-                                 components?.password,
-                                 components?.host,
-                                 components?.port?.string ]
-            + (paths)
-            + (queryItems)
-            + (fragments)
-
-        return parts.compactMap { $0?.isEmpty ?? true ? nil : $0 }
     }
 
 }

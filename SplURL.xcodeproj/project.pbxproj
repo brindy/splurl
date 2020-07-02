@@ -13,7 +13,35 @@
 		858A945D24AAA32D00E7AE55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 858A945C24AAA32D00E7AE55 /* Assets.xcassets */; };
 		858A946024AAA32D00E7AE55 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 858A945F24AAA32D00E7AE55 /* Preview Assets.xcassets */; };
 		858A946324AAA32D00E7AE55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 858A946124AAA32D00E7AE55 /* LaunchScreen.storyboard */; };
+		858A947124AD6AA200E7AE55 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 858A947024AD6AA200E7AE55 /* Media.xcassets */; };
+		858A947324AD6AA200E7AE55 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A947224AD6AA200E7AE55 /* ActionViewController.swift */; };
+		858A947924AD6AA200E7AE55 /* OpenInAction.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 858A946E24AD6AA200E7AE55 /* OpenInAction.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		858A948224AD78C000E7AE55 /* ActionInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 858A948124AD78C000E7AE55 /* ActionInterface.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		858A947724AD6AA200E7AE55 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 858A944B24AAA32900E7AE55 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 858A946D24AD6AA200E7AE55;
+			remoteInfo = OpenInAction;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		858A947D24AD6AA200E7AE55 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				858A947924AD6AA200E7AE55 /* OpenInAction.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		858A945324AAA32A00E7AE55 /* SplURL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplURL.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,10 +52,22 @@
 		858A945F24AAA32D00E7AE55 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		858A946224AAA32D00E7AE55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		858A946424AAA32D00E7AE55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		858A946E24AD6AA200E7AE55 /* OpenInAction.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OpenInAction.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		858A947024AD6AA200E7AE55 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		858A947224AD6AA200E7AE55 /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
+		858A947624AD6AA200E7AE55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		858A948124AD78C000E7AE55 /* ActionInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ActionInterface.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		858A945024AAA32A00E7AE55 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		858A946B24AD6AA200E7AE55 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				858A945524AAA32A00E7AE55 /* SplURL */,
+				858A946F24AD6AA200E7AE55 /* OpenInAction */,
 				858A945424AAA32A00E7AE55 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				858A945324AAA32A00E7AE55 /* SplURL.app */,
+				858A946E24AD6AA200E7AE55 /* OpenInAction.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -75,6 +117,17 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		858A946F24AD6AA200E7AE55 /* OpenInAction */ = {
+			isa = PBXGroup;
+			children = (
+				858A947224AD6AA200E7AE55 /* ActionViewController.swift */,
+				858A947624AD6AA200E7AE55 /* Info.plist */,
+				858A947024AD6AA200E7AE55 /* Media.xcassets */,
+				858A948124AD78C000E7AE55 /* ActionInterface.storyboard */,
+			);
+			path = OpenInAction;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -85,15 +138,34 @@
 				858A944F24AAA32A00E7AE55 /* Sources */,
 				858A945024AAA32A00E7AE55 /* Frameworks */,
 				858A945124AAA32A00E7AE55 /* Resources */,
+				858A947D24AD6AA200E7AE55 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				858A947824AD6AA200E7AE55 /* PBXTargetDependency */,
 			);
 			name = SplURL;
 			productName = SplURL;
 			productReference = 858A945324AAA32A00E7AE55 /* SplURL.app */;
 			productType = "com.apple.product-type.application";
+		};
+		858A946D24AD6AA200E7AE55 /* OpenInAction */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 858A947A24AD6AA200E7AE55 /* Build configuration list for PBXNativeTarget "OpenInAction" */;
+			buildPhases = (
+				858A946A24AD6AA200E7AE55 /* Sources */,
+				858A946B24AD6AA200E7AE55 /* Frameworks */,
+				858A946C24AD6AA200E7AE55 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenInAction;
+			productName = OpenInAction;
+			productReference = 858A946E24AD6AA200E7AE55 /* OpenInAction.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -106,6 +178,9 @@
 				ORGANIZATIONNAME = "Christopher Brind";
 				TargetAttributes = {
 					858A945224AAA32A00E7AE55 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					858A946D24AD6AA200E7AE55 = {
 						CreatedOnToolsVersion = 11.5;
 					};
 				};
@@ -124,6 +199,7 @@
 			projectRoot = "";
 			targets = (
 				858A945224AAA32A00E7AE55 /* SplURL */,
+				858A946D24AD6AA200E7AE55 /* OpenInAction */,
 			);
 		};
 /* End PBXProject section */
@@ -136,6 +212,15 @@
 				858A946324AAA32D00E7AE55 /* LaunchScreen.storyboard in Resources */,
 				858A946024AAA32D00E7AE55 /* Preview Assets.xcassets in Resources */,
 				858A945D24AAA32D00E7AE55 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		858A946C24AD6AA200E7AE55 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				858A948224AD78C000E7AE55 /* ActionInterface.storyboard in Resources */,
+				858A947124AD6AA200E7AE55 /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,7 +237,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		858A946A24AD6AA200E7AE55 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				858A947324AD6AA200E7AE55 /* ActionViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		858A947824AD6AA200E7AE55 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 858A946D24AD6AA200E7AE55 /* OpenInAction */;
+			targetProxy = 858A947724AD6AA200E7AE55 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		858A946124AAA32D00E7AE55 /* LaunchScreen.storyboard */ = {
@@ -283,6 +384,7 @@
 		858A946824AAA32D00E7AE55 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SplURL/Preview Content\"";
@@ -303,6 +405,7 @@
 		858A946924AAA32D00E7AE55 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SplURL/Preview Content\"";
@@ -315,6 +418,44 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.brindy.SplURL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		858A947B24AD6AA200E7AE55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = EVNNUL2F2G;
+				INFOPLIST_FILE = OpenInAction/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.brindy.SplURL.OpenInAction;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		858A947C24AD6AA200E7AE55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = EVNNUL2F2G;
+				INFOPLIST_FILE = OpenInAction/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.brindy.SplURL.OpenInAction;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -337,6 +478,15 @@
 			buildConfigurations = (
 				858A946824AAA32D00E7AE55 /* Debug */,
 				858A946924AAA32D00E7AE55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		858A947A24AD6AA200E7AE55 /* Build configuration list for PBXNativeTarget "OpenInAction" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				858A947B24AD6AA200E7AE55 /* Debug */,
+				858A947C24AD6AA200E7AE55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
