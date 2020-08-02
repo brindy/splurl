@@ -44,9 +44,6 @@ struct ContentView: View {
 
     @ObservedObject var model: Model
 
-    @State var showSheet = true
-    @State var showWelcome = true
-
     var body: some View {
         VStack {
             HStack {
@@ -60,7 +57,7 @@ struct ContentView: View {
 
                 Button(action: {
                     print("More pressed")
-                    self.showSheet = true
+                    self.model.showSheet = true
                 }) {
                     Image(systemName: "ellipsis.circle")
                 }.padding([.trailing], 12)
@@ -69,22 +66,22 @@ struct ContentView: View {
             SplURLContainerView(model: model, clearAction: {
                 print("Clear pressed")
                 self.model.url = nil
-            })/*
-                .sheet(isPresented: $showSheet) {
+            })
+                .sheet(isPresented: $model.showSheet) {
 
                     VStack {
                         HStack {
                             Spacer()
                             Button("Done", action: {
                                 print("Done pressed")
-                                self.showSheet = false
-                                self.showWelcome = false
+                                self.model.showSheet = false
+                                self.model.showWelcome = false
                             })
                         }
 
                         Spacer()
 
-                        if self.showWelcome {
+                        if self.model.showWelcome {
 
                             WelcomeView()
 
@@ -98,7 +95,7 @@ struct ContentView: View {
 
                     }.padding()
             }
-            */
+
         }
     }
 

@@ -15,7 +15,10 @@ struct AboutView: View {
 
             Text("SplURL - the URL splitter").font(.title)
 
-            Image(systemName: "link").padding(48)
+            Image("Logo")
+                .resizable()
+                .frame(width: 100, height: 100)
+                .cornerRadius(8)
 
             Text("(c) 2020 Brindy").padding()
 
@@ -25,7 +28,12 @@ struct AboutView: View {
 
             Spacer()
 
-            Text("Inspired by Russell Holt").padding()
+            VStack(alignment: .center, spacing: 8) {
+                Text("Inspired by Russell Holt")
+                Button("Logo by Mammoth Creative Works") {
+                    UIApplication.shared.open(URL(string: "https://www.mammothcreativeworks.co.uk/")!)
+                }
+            }.padding()
         }
     }
 

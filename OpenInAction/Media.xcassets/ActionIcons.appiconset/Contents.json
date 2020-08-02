@@ -31,13 +31,13 @@
       "size" : "40x40"
     },
     {
-      "filename" : "splurlaction120.png",
+      "filename" : "logo-trans-120.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
-      "filename" : "splurlaction180.png",
+      "filename" : "logo-trans-180.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
@@ -78,19 +78,19 @@
       "size" : "76x76"
     },
     {
-      "filename" : "splurl152.png",
+      "filename" : "logo-trans-152.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
     },
     {
-      "filename" : "splurl167.png",
+      "filename" : "logo-trans-167.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"
     },
     {
-      "filename" : "splurl1024.png",
+      "filename" : "Logo V3 Trans.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
