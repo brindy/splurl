@@ -27,7 +27,7 @@ struct WelcomeView: View {
 
             HStack {
                 Image(systemName: "link")
-                Text("Or from another app share some text or a link and use Open in SplURL to launch the app and automatically split up the first URL found.  Very cool! 😎")
+                Text("Or from another app, share some text or a link and use Open in SplURL to automatically split up the first URL found.  Very cool! 😎")
                     .font(.body)
                     .padding()
             }
