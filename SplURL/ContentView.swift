@@ -50,7 +50,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("SplURL - the URL splitter").font(.headline)
+                Text("SplURL - the URL splitter").font(.system(size: 16, weight: .bold))
 
                 Spacer()
 
@@ -69,7 +69,7 @@ struct ContentView: View {
             SplURLContainerView(model: model, clearAction: {
                 print("Clear pressed")
                 self.model.url = nil
-            })
+            })/*
                 .sheet(isPresented: $showSheet) {
 
                     VStack {
@@ -97,32 +97,24 @@ struct ContentView: View {
                         Spacer()
 
                     }.padding()
-
             }
+            */
         }
     }
 
     func tapPaste() {
+        let urlString = UIPasteboard.general.string?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
 
-        let delay = self.model.url == nil ? 0.0 : 0.3
+        var url = URL(string: urlString)
 
-        self.model.url = ""
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            let urlString = UIPasteboard.general.string?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-
-            var url = URL(string: urlString)
-
-            if url == nil {
-                let potential = urlString.components(separatedBy: .whitespacesAndNewlines).first(where: {
-                    $0.hasPrefix("http://") || $0.hasPrefix("https://")
-                })
-                url = URL(string: potential ?? "")
-            }
-
-            self.model.url = url?.absoluteString ?? "No URL in the clipboard"
+        if url == nil {
+            let potential = urlString.components(separatedBy: .whitespacesAndNewlines).first(where: {
+                $0.hasPrefix("http://") || $0.hasPrefix("https://")
+            })
+            url = URL(string: potential ?? "")
         }
 
+        self.model.url = url?.absoluteString ?? "No URL in the clipboard"
     }
 
 }

@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Open in SplURL</string>
+	<string>Split URL</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -22,10 +22,6 @@
 	<string>1</string>
 	<key>NSExtension</key>
 	<dict>
-		<key>NSExtensionMainStoryboard</key>
-		<string>ActionInterface</string>
-		<key>NSExtensionPointIdentifier</key>
-		<string>com.apple.ui-services</string>
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>NSExtensionActivationRule</key>
@@ -36,6 +32,10 @@
 				<integer>1</integer>
 			</dict>
 		</dict>
+		<key>NSExtensionMainStoryboard</key>
+		<string>ActionInterface</string>
+		<key>NSExtensionPointIdentifier</key>
+		<string>com.apple.ui-services</string>
 	</dict>
 </dict>
 </plist>

@@ -436,6 +436,7 @@
 		858A947B24AD6AA200E7AE55 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = ActionIcons;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EVNNUL2F2G;
 				INFOPLIST_FILE = OpenInAction/Info.plist;
@@ -455,6 +456,7 @@
 		858A947C24AD6AA200E7AE55 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = ActionIcons;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EVNNUL2F2G;
 				INFOPLIST_FILE = OpenInAction/Info.plist;

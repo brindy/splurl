@@ -96,7 +96,7 @@ struct SplURLContainerView: View {
                 .background(Color(UIColor.systemBackground).shadow(color: Color(UIColor.secondarySystemFill), radius: 1, x: 0, y: 2))
 
             List {
-                ForEach(model.parts) { part in
+                ForEach(model.parts + [""]) { part in
                     PartView(part: part)
                 }
             }
@@ -119,10 +119,12 @@ struct PartView: View {
             Text(part)
             Spacer()
 
-            Button(action: {
-                self.tapped = true
-            }) {
-                Image(systemName: "square.and.arrow.up").padding()
+            if !part.isEmpty {
+                Button(action: {
+                    self.tapped = true
+                }) {
+                    Image(systemName: "square.and.arrow.up").padding()
+                }
             }
         }
         .padding([.leading, .trailing], 12)
