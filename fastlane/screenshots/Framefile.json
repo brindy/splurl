@@ -1,0 +1,32 @@
+{
+  "default": {
+    "title": {
+      "color": "#FFFFFF",
+      "font": "./SFNSDisplayCondensed-Semibold.otf"
+    },
+    "background": "./background.jpg",
+    "padding": 50,
+    "title_min_height": 100
+  },
+  "data": [
+    {
+      "filter": "1Welcome",
+      "title": {
+        "text": "SplURL - the URL Splitter"
+      },
+      "title_below_image": true
+    },
+    {
+      "filter": "2Paste",
+      "title": {
+        "text": "Paste web addresses or open\nSplURL from other apps"
+      }
+    },  
+    {
+      "filter": "3Share",
+      "title": {
+        "text": "Copy parts of the web address\nor open them in other apps"
+      }
+    }
+  ]
+}
