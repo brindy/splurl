@@ -10,17 +10,9 @@ import Foundation
 
 class Model: ObservableObject {
 
-    struct SettingsKeys {
-        static let showWelcome = "settings.showWelcome"
-    }
+    @Published var showWelcome: Bool = false
 
-    @Published var showWelcome: Bool = UserDefaults.standard.object(forKey: SettingsKeys.showWelcome) as? Bool ?? true {
-        didSet {
-            UserDefaults.standard.set(false, forKey: SettingsKeys.showWelcome)
-        }
-    }
-
-    @Published var showSheet: Bool = UserDefaults.standard.object(forKey: SettingsKeys.showWelcome) as? Bool ?? true
+    @Published var showAbout: Bool = false
 
     @Published var url: String? {
         didSet {

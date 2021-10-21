@@ -21,8 +21,11 @@
 		858A948224AD78C000E7AE55 /* ActionInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 858A948124AD78C000E7AE55 /* ActionInterface.storyboard */; };
 		858A948524AD7B4C00E7AE55 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A948424AD7B4C00E7AE55 /* AboutView.swift */; };
 		858A948724AD7B8700E7AE55 /* SplURLContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A948624AD7B8700E7AE55 /* SplURLContainerView.swift */; };
-		858A948824AD7BEF00E7AE55 /* SplURLContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A948624AD7B8700E7AE55 /* SplURLContainerView.swift */; };
 		858A948A24AD955C00E7AE55 /* HostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A948924AD955C00E7AE55 /* HostController.swift */; };
+		85A3F1A82722285800EDE250 /* WelcomeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A3F1A72722285800EDE250 /* WelcomeManager.swift */; };
+		85A3F1AA2722290B00EDE250 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A3F1A92722290B00EDE250 /* WelcomeView.swift */; };
+		85A3F1AE2722296A00EDE250 /* WelcomeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A3F1A72722285800EDE250 /* WelcomeManager.swift */; };
+		85A3F1AF27222A1900EDE250 /* SplURLContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A948624AD7B8700E7AE55 /* SplURLContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,8 @@
 		858A948424AD7B4C00E7AE55 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		858A948624AD7B8700E7AE55 /* SplURLContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplURLContainerView.swift; sourceTree = "<group>"; };
 		858A948924AD955C00E7AE55 /* HostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostController.swift; sourceTree = "<group>"; };
+		85A3F1A72722285800EDE250 /* WelcomeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeManager.swift; sourceTree = "<group>"; };
+		85A3F1A92722290B00EDE250 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,17 +113,11 @@
 		858A945524AAA32A00E7AE55 /* SplURL */ = {
 			isa = PBXGroup;
 			children = (
-				858A948424AD7B4C00E7AE55 /* AboutView.swift */,
-				858A945624AAA32A00E7AE55 /* AppDelegate.swift */,
-				8511D9A224D6EF93007EBC49 /* AppIcon.xcassets */,
-				858A945C24AAA32D00E7AE55 /* Assets.xcassets */,
-				858A945A24AAA32A00E7AE55 /* ContentView.swift */,
+				85A3F1AC2722294A00EDE250 /* AppSupport */,
 				858A946424AAA32D00E7AE55 /* Info.plist */,
-				858A946124AAA32D00E7AE55 /* LaunchScreen.storyboard */,
-				8511D9A624D6FE47007EBC49 /* Model.swift */,
+				85A3F1AD2722295A00EDE250 /* Model */,
 				858A945E24AAA32D00E7AE55 /* Preview Content */,
-				858A945824AAA32A00E7AE55 /* SceneDelegate.swift */,
-				858A948624AD7B8700E7AE55 /* SplURLContainerView.swift */,
+				85A3F1AB2722292B00EDE250 /* Views */,
 			);
 			path = SplURL;
 			sourceTree = "<group>";
@@ -140,6 +139,38 @@
 				858A948924AD955C00E7AE55 /* HostController.swift */,
 			);
 			path = OpenInAction;
+			sourceTree = "<group>";
+		};
+		85A3F1AB2722292B00EDE250 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				858A948424AD7B4C00E7AE55 /* AboutView.swift */,
+				858A945A24AAA32A00E7AE55 /* ContentView.swift */,
+				858A948624AD7B8700E7AE55 /* SplURLContainerView.swift */,
+				85A3F1A92722290B00EDE250 /* WelcomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		85A3F1AC2722294A00EDE250 /* AppSupport */ = {
+			isa = PBXGroup;
+			children = (
+				8511D9A224D6EF93007EBC49 /* AppIcon.xcassets */,
+				858A945C24AAA32D00E7AE55 /* Assets.xcassets */,
+				858A945624AAA32A00E7AE55 /* AppDelegate.swift */,
+				858A946124AAA32D00E7AE55 /* LaunchScreen.storyboard */,
+				858A945824AAA32A00E7AE55 /* SceneDelegate.swift */,
+			);
+			path = AppSupport;
+			sourceTree = "<group>";
+		};
+		85A3F1AD2722295A00EDE250 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8511D9A624D6FE47007EBC49 /* Model.swift */,
+				85A3F1A72722285800EDE250 /* WelcomeManager.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,7 +219,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = "Christopher Brind";
 				TargetAttributes = {
 					858A945224AAA32A00E7AE55 = {
@@ -249,8 +280,10 @@
 				8511D9A724D6FE47007EBC49 /* Model.swift in Sources */,
 				858A948524AD7B4C00E7AE55 /* AboutView.swift in Sources */,
 				858A945724AAA32A00E7AE55 /* AppDelegate.swift in Sources */,
+				85A3F1AA2722290B00EDE250 /* WelcomeView.swift in Sources */,
 				858A948724AD7B8700E7AE55 /* SplURLContainerView.swift in Sources */,
 				858A945924AAA32A00E7AE55 /* SceneDelegate.swift in Sources */,
+				85A3F1A82722285800EDE250 /* WelcomeManager.swift in Sources */,
 				858A945B24AAA32A00E7AE55 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,9 +292,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85A3F1AF27222A1900EDE250 /* SplURLContainerView.swift in Sources */,
 				8511D9A824D6FE5D007EBC49 /* Model.swift in Sources */,
 				858A948A24AD955C00E7AE55 /* HostController.swift in Sources */,
-				858A948824AD7BEF00E7AE55 /* SplURLContainerView.swift in Sources */,
+				85A3F1AE2722296A00EDE250 /* WelcomeManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +347,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -337,7 +372,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -373,6 +408,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -391,7 +427,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
