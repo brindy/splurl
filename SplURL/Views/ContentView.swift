@@ -19,17 +19,27 @@ struct ContentView: View {
                 Text("SplURL - the URL splitter").font(.headline)
                 Spacer()
                 Menu {
+
                     Button(action: {
-                        self.model.showAbout = true
+                        tapPaste()
                     }) {
-                        Label("About", systemImage: "questionmark.square.dashed")
+                        Label("Paste", systemImage: "doc.on.clipboard")
                     }
+
+                    Divider()
 
                     Button(action: {
                         self.model.showWelcome = true
                     }) {
                         Label("Help", systemImage: "signpost.left")
                     }
+
+                    Button(action: {
+                        self.model.showAbout = true
+                    }) {
+                        Label("About", systemImage: "questionmark.square.dashed")
+                    }
+
                 }
                 label: {
                     Image(systemName: "ellipsis.circle")
@@ -40,6 +50,9 @@ struct ContentView: View {
             SplURLContainerView(model: model, clearAction: {
                 print("Clear pressed")
                 self.model.url = nil
+            }, pasteAction: {
+                print("Paste pressed")
+                tapPaste()
             })
             .sheet(isPresented: $model.showWelcome) {
                 VStack(alignment: .trailing) {

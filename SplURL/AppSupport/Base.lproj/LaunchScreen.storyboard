@@ -23,29 +23,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="acl-L4-JVZ">
-                                <rect key="frame" x="0.0" y="139" width="414" height="1"/>
-                                <color key="backgroundColor" systemColor="separatorColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="XJO-Uq-wJq"/>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ACf-hz-90f">
-                                <rect key="frame" x="0.0" y="146" width="414" height="716"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ACf-hz-90f" secondAttribute="bottom" id="3bj-NW-3co"/>
                             <constraint firstItem="1zu-YS-7Ue" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="PgF-mY-Szw"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="acl-L4-JVZ" secondAttribute="trailing" id="fRd-Sm-5LZ"/>
-                            <constraint firstItem="acl-L4-JVZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fd4-sc-xKc"/>
-                            <constraint firstItem="ACf-hz-90f" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="m3T-lQ-LA1"/>
-                            <constraint firstItem="acl-L4-JVZ" firstAttribute="top" secondItem="1zu-YS-7Ue" secondAttribute="bottom" constant="62" id="qmr-6G-KwA"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ACf-hz-90f" secondAttribute="trailing" id="rej-Zt-D2z"/>
-                            <constraint firstItem="ACf-hz-90f" firstAttribute="top" secondItem="acl-L4-JVZ" secondAttribute="bottom" constant="6" id="xPF-bg-39B"/>
                             <constraint firstItem="1zu-YS-7Ue" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="zMt-YI-dbh"/>
                         </constraints>
                     </view>
@@ -56,9 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="separatorColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

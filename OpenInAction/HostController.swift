@@ -20,6 +20,8 @@ class HostController: UIViewController {
         let childView = UIHostingController(rootView: SplURLContainerView(model: model, clearAction: {
             print("clear")
             self.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
+        }, pasteAction: {
+            print("paste")            
         }))
         addChild(childView)
         childView.view.frame = view.frame
