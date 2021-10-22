@@ -26,6 +26,7 @@
 		85A3F1AA2722290B00EDE250 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A3F1A92722290B00EDE250 /* WelcomeView.swift */; };
 		85A3F1AE2722296A00EDE250 /* WelcomeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A3F1A72722285800EDE250 /* WelcomeManager.swift */; };
 		85A3F1AF27222A1900EDE250 /* SplURLContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A948624AD7B8700E7AE55 /* SplURLContainerView.swift */; };
+		85A3F1B127223E0700EDE250 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A3F1B027223E0700EDE250 /* Version.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		858A948924AD955C00E7AE55 /* HostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostController.swift; sourceTree = "<group>"; };
 		85A3F1A72722285800EDE250 /* WelcomeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeManager.swift; sourceTree = "<group>"; };
 		85A3F1A92722290B00EDE250 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		85A3F1B027223E0700EDE250 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 			children = (
 				8511D9A624D6FE47007EBC49 /* Model.swift */,
 				85A3F1A72722285800EDE250 /* WelcomeManager.swift */,
+				85A3F1B027223E0700EDE250 /* Version.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8511D9A724D6FE47007EBC49 /* Model.swift in Sources */,
+				85A3F1B127223E0700EDE250 /* Version.swift in Sources */,
 				858A948524AD7B4C00E7AE55 /* AboutView.swift in Sources */,
 				858A945724AAA32A00E7AE55 /* AppDelegate.swift in Sources */,
 				85A3F1AA2722290B00EDE250 /* WelcomeView.swift in Sources */,
