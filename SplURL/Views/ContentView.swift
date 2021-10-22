@@ -47,10 +47,7 @@ struct ContentView: View {
 
             }.padding()
 
-            SplURLContainerView(model: model, clearAction: {
-                print("Clear pressed")
-                self.model.url = nil
-            }, pasteAction: {
+            SplURLContainerView(model: model, pasteAction: {
                 print("Paste pressed")
                 tapPaste()
             })

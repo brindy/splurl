@@ -12,11 +12,21 @@ struct SplURLContainerView: View {
 
     @ObservedObject var model: Model
 
-    var clearAction: () -> Void
     var pasteAction: () -> Void
+    var closeAction: (() -> Void)?
 
     var body: some View {
         VStack {
+            if closeAction != nil {
+                HStack {
+                    Spacer()
+                    Button("Done") {
+                        closeAction?()
+                    }
+                }
+                .padding([.top, .trailing, .leading])
+            }
+
             List {
                 Section(header:
                     HStack {
@@ -28,7 +38,8 @@ struct SplURLContainerView: View {
                         PartView(part: part)
                     }
                 }
-            }.listStyle(.inset)
+            }
+            .listStyle(.inset)            
         }
         .buttonStyle(BorderlessButtonStyle())
     }
