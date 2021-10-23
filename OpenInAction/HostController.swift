@@ -12,7 +12,7 @@ import MobileCoreServices
 
 class HostController: UIViewController {
 
-    let model = Model()
+    let model = Model(extraSpace: true)
 
     override func viewDidLoad() {
         super.viewDidLoad()

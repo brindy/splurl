@@ -95,7 +95,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(model: Model())
+        ContentView(model: Model(extraSpace: false))
             .environment(\.colorScheme, .dark)
     }
 }

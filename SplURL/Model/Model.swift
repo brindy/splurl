@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import SwiftUI
 
 class Model: ObservableObject {
+
+    let extraSpace: Bool
 
     @Published var showWelcome: Bool = false
 
@@ -21,48 +24,138 @@ class Model: ObservableObject {
         }
     }
 
-    @Published var parts: [String] = [] {
+    @Published var parts: [PartSectionModel] = [PartSectionModel(name: "Use the menu to paste a URL", parts: [])] {
         didSet {
             print("didSet parts", parts)
         }
     }
 
-    func createParts() -> [String] {
-        guard let urlString = url, let url = URL(string: urlString) else { return [] }
+    init(extraSpace: Bool) {
+        self.extraSpace = extraSpace
+    }
 
+    enum Part {
+
+        case scheme(String)
+        case user(String)
+        case password(String)
+        case host(String)
+        case port(Int)
+        case path(String)
+        case queryParameterName(String)
+        case queryParameterValue(String)
+        case fragment(value: String)
+    }
+
+    struct PartSectionModel: Identifiable {
+
+        let id = UUID().uuidString
+
+        let name: String
+        let parts: [PartModel]
+
+    }
+
+    struct PartModel: Identifiable {
+
+        let id = UUID().uuidString
+        let part: Part
+
+        var prefix: String {
+
+            switch part {
+            case .port: return ":"
+            default: return ""
+            }
+            
+        }
+
+        var suffix: String {
+
+            switch part {
+            case .scheme: return "://"
+            case .user: return ":"
+            case .password: return "@"
+            default: return ""
+            }
+
+        }
+
+        var asString: String {
+
+            switch part {
+            case .scheme(let scheme): return scheme
+            case .user(let user): return user
+            case .password(let password): return password
+            case .host(let host): return host
+            case .port(let port): return "\(port)"
+            case .path(let path): return path
+            case .queryParameterName(let name): return name
+            case .queryParameterValue(let value): return value
+            case .fragment(let fragment): return fragment
+            }
+
+        }
+
+    }
+
+    func createParts() -> [PartSectionModel] {
+        guard let urlString = url, let url = URL(string: urlString) else {
+            return [
+                PartSectionModel(name: "No URL in clipboard", parts: [])
+            ]
+        }
         let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
 
-        let paths = components?.path
-            .components(separatedBy: "/")
-            .map { $0.components(separatedBy: "&") }
-            .flatMap { $0 }
-            .map { $0.components(separatedBy: "=") }
-            .flatMap { $0 }
-            ?? []
+        var result = [PartSectionModel]()
 
-        let queryItems = components?.queryItems?
-            .map{ [$0.name, $0.value] }
-            .flatMap{ $0 }
-            .compactMap{ $0 } ?? []
+        if components != nil {
+            var parts = [PartModel]()
+            if let scheme = components?.scheme {
+                parts.append(PartModel(part: .scheme(scheme)))
+            }
+            if let user = components?.user {
+                parts.append(PartModel(part: .user(user)))
+            }
+            if let password = components?.password {
+                parts.append(PartModel(part: .password(password)))
+            }
+            if let host = components?.host {
+                parts.append(PartModel(part: .host(host)))
+            }
+            if let port = components?.port {
+                parts.append(PartModel(part: .port(port)))
+            }
+            result.append(PartSectionModel(name: parts.map { $0.prefix + $0.asString + $0.suffix }.joined(separator: ""), parts: parts))
+        }
 
-        let fragments = components?.fragment?
-            .components(separatedBy: "/")
-            .map { $0.components(separatedBy: "&") }
-            .flatMap { $0 }
-            .map { $0.components(separatedBy: "=") }
-            .flatMap { $0 }
-            ?? []
+        if let paths = components?.path.components(separatedBy: "/") {
+            let parts = paths.filter { !$0.isEmpty }.map { PartModel(part: .path($0)) }
+            if !parts.isEmpty {
+                result.append(PartSectionModel(name: components?.path ?? "", parts: parts))
+            }
+        }
 
-        let parts: [String?] = [ components?.scheme,
-                                 components?.user,
-                                 components?.password,
-                                 components?.host,
-                                 components?.port?.string ]
-            + (paths)
-            + (queryItems)
-            + (fragments)
+        if let queryItems = components?.queryItems, !queryItems.isEmpty {
+            let parts = queryItems.flatMap {
+                [
+                    PartModel(part: .queryParameterName($0.name)),
+                    $0.value.map { PartModel(part: .queryParameterName($0)) }
+                ].compactMap {
+                    $0
+                }
+            }
 
-        return parts.compactMap { $0?.isEmpty ?? true ? nil : $0 }
+            let sectionName = queryItems.map { $0.name + "=" + ($0.value ?? "")}.joined(separator: "&")
+            result.append(PartSectionModel(name: "?" + sectionName, parts: parts))
+        }
+
+        if let fragment = components?.fragment, !fragment.isEmpty {
+            let parts = fragment.components(separatedBy: "/").map { PartModel(part: .fragment(value: $0)) }
+            result.append(PartSectionModel(name: "#" + fragment, parts: parts))
+        }
+
+        return result
     }
 
 }

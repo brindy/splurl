@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct SplURLContainerView: View {
 
@@ -28,20 +29,20 @@ struct SplURLContainerView: View {
             }
 
             List {
-                Section(header:
-                    HStack {
-                        Image(systemName: model.parts.isEmpty ? "doc.on.clipboard" : "globe")
-                        Text(model.url ?? "Use the menu to paste a URL from the clipboard.")
-                    }
-                ) {
-                    ForEach(model.parts) { part in
-                        PartView(part: part)
+
+                ForEach(model.parts) { section in
+                    Section(header: Text(section.name)) {
+                        ForEach(section.parts) { part in
+                            PartView(model: part)
+                        }
                     }
                 }
+
             }
-            .listStyle(.inset)            
+            .listStyle(.inset)
         }
         .buttonStyle(BorderlessButtonStyle())
+        .padding(EdgeInsets(top: 0, leading: 0, bottom: model.extraSpace ? 40 : 0, trailing: 0))
     }
 
 }
@@ -49,26 +50,25 @@ struct SplURLContainerView: View {
 
 struct PartView: View {
 
-    var part: String
+    var model: Model.PartModel
 
     @State var tapped: Bool = false
 
     var body: some View {
         HStack {
-            Text(part)
-            Spacer()
-            if !part.isEmpty {
-                Menu {
-                    Button(action: {
-                        // TODO copy
-                    }) {
-                        Label("Copy", systemImage: "doc.on.doc")
-                    }
+            Text(model.asString)
 
+            Spacer()
+            Menu {
+                Button(action: {
+                    UIPasteboard.general.string = model.asString
+                }) {
+                    Label("Copy", systemImage: "doc.on.doc")
                 }
-                label: {
-                    Image(systemName: "ellipsis.circle")
-                }
+
+            }
+            label: {
+                Image(systemName: "ellipsis.circle")
             }
         }
     }
