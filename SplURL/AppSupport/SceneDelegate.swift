@@ -13,8 +13,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    let model = Model(extraSpace: false)
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        let model = Model(extraSpace: false)
+
+        if connectionOptions.shortcutItem != nil {
+            // We only support "paste", so must be that
+            model.url = UIPasteboard.general.string
+        }
+
         model.showWelcome = WelcomeManager().shouldShow()
         let contentView = ContentView(model: model)
 
@@ -31,6 +38,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             contentView.model.url = text
         }
 
+    }
+
+    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        // Must be a paste
+        model.url = UIPasteboard.general.string
+        completionHandler(true)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
