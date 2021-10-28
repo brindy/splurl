@@ -17,8 +17,6 @@ class HostController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // TODO wrap this in a SwiftUI view with the done button and add a menu 
-
         let rootView = SplURLContainerView(model: model, pasteAction: {
             print("paste")
         }) {

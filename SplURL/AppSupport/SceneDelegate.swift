@@ -23,7 +23,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
         model.showWelcome = WelcomeManager().shouldShow()
-        let contentView = ContentView(model: model)
+        let contentView = ContentView(model: model,
+                                      shareAction: shareAction,
+                                      openAction: openAction,
+                                      copyAction: copyAction)
             .environmentObject(ContextModel(isApp: true))
 
         if let windowScene = scene as? UIWindowScene {
@@ -69,6 +72,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             guard item.name == "text" else { return  }
             guard let text = item.value else { return }
             NotificationCenter.default.post(name: .OpenedWithText, object: text)
+        }
+    }
+
+    func shareAction() {
+
+        let url = model.buildURL()
+        let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        window?.rootViewController?.show(controller, sender: self)
+
+    }
+
+    func openAction() {
+
+        if let url = model.buildURL() as? URL {
+            UIApplication.shared.open(url, options: [:])
+        } else {
+            shareAction()
+        }
+
+    }
+
+    func copyAction() {
+        let url = model.buildURL()
+        if let url = url as? URL {
+            UIPasteboard.general.url = url
+        } else if let urlString = url as? String {
+            UIPasteboard.general.string = urlString
         }
     }
 

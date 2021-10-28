@@ -24,7 +24,7 @@ class Model: ObservableObject {
         }
     }
 
-    @Published var sections: [PartSectionModel] = [PartSectionModel(name: "Use the menu to paste a URL", parts: [])] {
+    @Published var sections: [PartSectionModel] = [PartSectionModel(nameFactory: {_ in "Use the menu to paste a URL"}, parts: [])] {
         didSet {
             print("didSet parts", sections)
         }
@@ -50,18 +50,30 @@ class Model: ObservableObject {
     struct PartSectionModel: Identifiable {
 
         let id: String
-        let name: String
+        let nameFactory: ([PartModel]) -> String
+
+        var name: String { nameFactory(parts) }
+
         var parts: [PartModel]
 
-        init(id: String = UUID().uuidString, name: String, parts: [PartModel]) {
+        init(id: String = UUID().uuidString, nameFactory: @escaping ([PartModel]) -> String, parts: [PartModel]) {
             self.id = id
-            self.name = name
+            self.nameFactory = nameFactory
             self.parts = parts
         }
 
         func removingPart(_ part: PartModel) -> PartSectionModel {
-            let parts = self.parts.filter { $0.id != part.id }
-            return PartSectionModel(id: id, name: name, parts: parts)
+            let parts: [PartModel]
+
+            if case .queryParameterName(name) = part.part, let nameIndex = self.parts.firstIndex(where: { $0.id == part.id }) {
+                var editable = self.parts
+                editable.remove(at: nameIndex)
+                editable.remove(at: nameIndex)
+                parts = editable
+            } else {
+                parts = self.parts.filter { $0.id != part.id }
+            }
+            return PartSectionModel(id: id, nameFactory: nameFactory, parts: parts)
         }
 
     }
@@ -86,6 +98,8 @@ class Model: ObservableObject {
             case .scheme: return "://"
             case .user: return ":"
             case .password: return "@"
+            case .queryParameterName: return "="
+            case .queryParameterValue: return "&"
             default: return ""
             }
 
@@ -122,7 +136,7 @@ class Model: ObservableObject {
     private func createSections() -> [PartSectionModel] {
         guard let urlString = url, let url = URL(string: urlString) else {
             return [
-                PartSectionModel(name: "No URL in clipboard", parts: [])
+                PartSectionModel(nameFactory: { _ in "No URL in clipboard" }, parts: [])
             ]
         }
         let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
@@ -146,13 +160,13 @@ class Model: ObservableObject {
             if let port = components?.port {
                 parts.append(PartModel(part: .port(port)))
             }
-            result.append(PartSectionModel(name: parts.map { $0.prefix + $0.asString + $0.suffix }.joined(separator: ""), parts: parts))
+            result.append(PartSectionModel(nameFactory: { parts in parts.map { $0.prefix + $0.asString + $0.suffix }.joined(separator: "") }, parts: parts))
         }
 
         if let paths = components?.path.components(separatedBy: "/") {
             let parts = paths.filter { !$0.isEmpty }.map { PartModel(part: .path($0)) }
             if !parts.isEmpty {
-                result.append(PartSectionModel(name: components?.path ?? "", parts: parts))
+                result.append(PartSectionModel(nameFactory: { parts in parts.map { "/" + $0.asString }.joined() }, parts: parts))
             }
         }
 
@@ -160,22 +174,65 @@ class Model: ObservableObject {
             let parts = queryItems.flatMap {
                 [
                     PartModel(part: .queryParameterName($0.name)),
-                    $0.value.map { PartModel(part: .queryParameterName($0)) }
+                    $0.value.map { PartModel(part: .queryParameterValue($0)) }
                 ].compactMap {
                     $0
+                }.filter {
+                    $0.asString != ""
                 }
             }
 
-            let sectionName = queryItems.map { $0.name + "=" + ($0.value ?? "")}.joined(separator: "&")
-            result.append(PartSectionModel(name: "?" + sectionName, parts: parts))
+            result.append(PartSectionModel(nameFactory: { parts in
+                return "?" + self.nameValuesFrom(parts).joined(separator: "&")
+            }, parts: parts))
         }
 
         if let fragment = components?.fragment, !fragment.isEmpty {
             let parts = fragment.components(separatedBy: "/").map { PartModel(part: .fragment(value: $0)) }
-            result.append(PartSectionModel(name: "#" + fragment, parts: parts))
+            result.append(PartSectionModel(nameFactory: { parts in "#" + parts.map { $0.asString }.joined(separator: "/") }, parts: parts))
         }
 
         return result
+    }
+
+    private func nameValuesFrom(_ models: [PartModel]) -> [String] {
+
+        var parts = [String]()
+        var previousPair: (name: String, value: String)?
+
+        (0 ..< models.count).forEach {
+            switch models[$0].part {
+            case .queryParameterName(let name):
+                if let pair = previousPair {
+                    parts.append(pair.name + "=" + pair.value)
+                }
+                previousPair = (name: name, value: "")
+
+            case .queryParameterValue(let value):
+                previousPair?.value = value
+                if let pair = previousPair {
+                    parts.append(pair.name + "=" + pair.value)
+                    previousPair = nil
+                }
+
+            default: assertionFailure("unexpected part")
+            }
+        }
+
+        if let pair = previousPair {
+            parts.append(pair.name + "=" + pair.value)
+        }
+
+        return parts
+    }
+
+    func buildURL() -> Any {
+        let urlString = sections.map { $0.name }.joined()
+        if let url = URL(string: urlString) {
+            return url
+        } else {
+            return urlString
+        }
     }
 
 }

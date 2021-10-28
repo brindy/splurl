@@ -12,6 +12,10 @@ struct ContentView: View {
 
     @ObservedObject var model: Model
 
+    var shareAction: () -> Void
+    var openAction: () -> Void
+    var copyAction: () -> Void
+
     var body: some View {
         VStack {
             HStack {
@@ -21,7 +25,7 @@ struct ContentView: View {
 
                     if model.url != nil {
                         Button(action: {
-                            // TODO
+                            copyAction()
                         }) {
                             Label("Copy", systemImage: "doc.on.doc")
                         }
@@ -36,9 +40,15 @@ struct ContentView: View {
                     Divider()
 
                     Button(action: {
-                        // TODO
+                        shareAction()
                     }) {
                         Label("Share", systemImage: "square.and.arrow.up")
+                    }
+
+                    Button(action: {
+                        openAction()
+                    }) {
+                        Label("Open", systemImage: "paperplane")
                     }
 
                     Divider()
@@ -110,7 +120,9 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(model: Model(extraSpace: false))
-            .environment(\.colorScheme, .dark)
+        ContentView(model: Model(extraSpace: false),
+                    shareAction: {},
+                    openAction: {},
+                    copyAction: {}).environment(\.colorScheme, .dark)
     }
 }
