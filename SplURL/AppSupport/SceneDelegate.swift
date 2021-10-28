@@ -24,6 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         model.showWelcome = WelcomeManager().shouldShow()
         let contentView = ContentView(model: model)
+            .environmentObject(ContextModel(isApp: true))
 
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
@@ -32,10 +33,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.makeKeyAndVisible()
         }
 
-        NotificationCenter.default.addObserver(forName: .OpenedWithText, object: nil, queue: nil) { notification in
+        NotificationCenter.default.addObserver(forName: .OpenedWithText, object: nil, queue: nil) { [weak self] notification in
             let text = notification.object as? String
             print("opened with text", text as Any)
-            contentView.model.url = text
+            self?.model.url = text
         }
 
     }

@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SplURL - the URL splitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zu-YS-7Ue">
-                                <rect key="frame" x="16" y="60" width="168.5" height="17"/>
+                                <rect key="frame" x="16" y="62" width="168.5" height="17"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -28,7 +28,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="1zu-YS-7Ue" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="PgF-mY-Szw"/>
-                            <constraint firstItem="1zu-YS-7Ue" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="zMt-YI-dbh"/>
+                            <constraint firstItem="1zu-YS-7Ue" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="18" id="zMt-YI-dbh"/>
                         </constraints>
                     </view>
                 </viewController>

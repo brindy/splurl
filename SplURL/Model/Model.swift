@@ -20,13 +20,13 @@ class Model: ObservableObject {
     @Published var url: String? {
         didSet {
             print("didSet url", url as Any)
-            parts = createParts()
+            sections = createSections()
         }
     }
 
-    @Published var parts: [PartSectionModel] = [PartSectionModel(name: "Use the menu to paste a URL", parts: [])] {
+    @Published var sections: [PartSectionModel] = [PartSectionModel(name: "Use the menu to paste a URL", parts: [])] {
         didSet {
-            print("didSet parts", parts)
+            print("didSet parts", sections)
         }
     }
 
@@ -49,10 +49,20 @@ class Model: ObservableObject {
 
     struct PartSectionModel: Identifiable {
 
-        let id = UUID().uuidString
-
+        let id: String
         let name: String
-        let parts: [PartModel]
+        var parts: [PartModel]
+
+        init(id: String = UUID().uuidString, name: String, parts: [PartModel]) {
+            self.id = id
+            self.name = name
+            self.parts = parts
+        }
+
+        func removingPart(_ part: PartModel) -> PartSectionModel {
+            let parts = self.parts.filter { $0.id != part.id }
+            return PartSectionModel(id: id, name: name, parts: parts)
+        }
 
     }
 
@@ -99,7 +109,17 @@ class Model: ObservableObject {
 
     }
 
-    func createParts() -> [PartSectionModel] {
+    func remove(part: PartModel) {
+        guard let section = sections.first(where: { $0.parts.contains(where: { $0.id == part.id }) }) else { return }
+        let updated = section.removingPart(part)
+        if updated.parts.isEmpty {
+            self.sections = self.sections.filter { $0.id != section.id }
+        } else {
+            self.sections = self.sections.map { $0.id == section.id ? updated : $0 }
+        }
+    }
+
+    private func createSections() -> [PartSectionModel] {
         guard let urlString = url, let url = URL(string: urlString) else {
             return [
                 PartSectionModel(name: "No URL in clipboard", parts: [])

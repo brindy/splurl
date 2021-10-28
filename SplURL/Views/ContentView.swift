@@ -14,16 +14,31 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-
             HStack {
                 Text("SplURL - the URL splitter").font(.headline)
                 Spacer()
                 Menu {
 
+                    if model.url != nil {
+                        Button(action: {
+                            // TODO
+                        }) {
+                            Label("Copy", systemImage: "doc.on.doc")
+                        }
+                    }
+
                     Button(action: {
                         tapPaste()
                     }) {
                         Label("Paste", systemImage: "doc.on.clipboard")
+                    }
+
+                    Divider()
+
+                    Button(action: {
+                        // TODO
+                    }) {
+                        Label("Share", systemImage: "square.and.arrow.up")
                     }
 
                     Divider()

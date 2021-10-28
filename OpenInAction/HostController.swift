@@ -17,11 +17,13 @@ class HostController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // TODO wrap this in a SwiftUI view with the done button and add a menu 
+
         let rootView = SplURLContainerView(model: model, pasteAction: {
             print("paste")
         }) {
             self.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
-        }
+        }.environmentObject(ContextModel(isApp: false))
 
         let childView = UIHostingController(rootView: rootView)
         addChild(childView)
