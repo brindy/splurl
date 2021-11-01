@@ -20,7 +20,7 @@ struct AboutView: View {
                 .frame(width: 100, height: 100)
                 .cornerRadius(8)
 
-            Text("(c) 2020 Brindy").padding()
+            Text("v" + Version.short + " - (c) 2021 Brindy").padding()
 
             Button("https://github.com/brindy/splurl") {
                 UIApplication.shared.open(URL(string: "https://github.com/brindy/splurl")!)
@@ -30,9 +30,10 @@ struct AboutView: View {
 
             VStack(alignment: .center, spacing: 8) {
                 Text("Inspired by Russell Holt")
+                    .font(.footnote)
                 Button("Logo by Mammoth Creative Works") {
                     UIApplication.shared.open(URL(string: "https://www.mammothcreativeworks.co.uk/")!)
-                }
+                }.font(.footnote)
             }.padding()
         }
     }

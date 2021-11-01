@@ -12,24 +12,22 @@ import MobileCoreServices
 
 class HostController: UIViewController {
 
-    let model = Model()
+    let model = Model(extraSpace: true)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let childView = UIHostingController(rootView: SplURLContainerView(model: model, clearAction: {
-            print("clear")
+        let rootView = SplURLContainerView(model: model, pasteAction: {
+            print("paste")
+        }) {
             self.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
-        }))
+        }.environmentObject(ContextModel(isApp: false))
+
+        let childView = UIHostingController(rootView: rootView)
         addChild(childView)
         childView.view.frame = view.frame
         view.addSubview(childView.view)
         childView.didMove(toParent: self)
-        
-        _ = model.$url.sink { _ in
-            print("sink", self.model.url as Any)
-        }
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -55,8 +53,7 @@ class HostController: UIViewController {
                 }
             }
 
-            // self.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
-        }
+         }
 
     }
 
